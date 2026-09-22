@@ -209,6 +209,13 @@ a:focus-visible {
   vertical-align: middle;
 }
 
+.hero-time {
+  margin: .5rem 0 0;
+  font-size: 1.05rem;
+  letter-spacing: .14em;
+  color: var(--rose-deep);
+}
+
 .hero-venue {
   margin: .4rem 0 0;
   font-size: 1rem;
@@ -335,7 +342,7 @@ a:focus-visible {
 
 .timeline {
   max-width: 340px;
-  margin: 0 auto 2.5rem;
+  margin: 0 auto 1.25rem;
   padding: 0;
   list-style: none;
   text-align: left;
@@ -368,6 +375,12 @@ a:focus-visible {
   font-family: var(--serif-en);
   font-style: italic;
   font-size: 1rem;
+  color: var(--muted);
+}
+
+.timeline-note {
+  margin: 0 0 2rem;
+  font-size: .92rem;
   color: var(--muted);
 }
 
@@ -501,7 +514,7 @@ address {
   :root { --bg: #fff; --bg-alt: #fff; --surface: #fff; }
 
   body {
-    padding: 16mm 20mm 0;
+    padding: 14mm 20mm 0;
     background: #fff;
     font-size: 10.5pt;
     line-height: 1.7;
@@ -536,10 +549,11 @@ address {
   .names-en { font-size: 16pt; }
   .divider { width: 40mm; margin: 2.5mm auto; }
   .hero-date { font-size: 20pt; }
-  .hero-venue { margin-top: 1mm; font-size: 10pt; }
+  .hero-time { margin-top: 1mm; font-size: 11pt; }
+  .hero-venue { margin-top: .5mm; font-size: 10pt; }
 
   /* Sections */
-  .section { padding: 0; margin-top: 7mm; }
+  .section { padding: 0; margin-top: 6mm; }
   .section h2 { margin-bottom: 3mm; font-size: 13pt; }
   .section h2::after { width: 8mm; margin-top: 1.5mm; }
 
@@ -550,11 +564,24 @@ address {
 
   .big-date { margin-bottom: 1mm; font-size: 12pt; }
   .big-date span { margin-top: 0; font-size: 9pt; }
-  .timeline { max-width: 62mm; margin: 0 auto; }
-  .timeline li { grid-template-columns: 17mm 1fr; gap: 3mm; padding: 1.8mm 0; }
-  .timeline time { font-size: 15pt; }
-  .timeline strong { font-size: 10.5pt; }
-  .timeline div span { font-size: 9pt; }
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: none;
+    margin: 1.5mm 0 0;
+  }
+  .timeline li {
+    grid-template-columns: 1fr;
+    gap: .8mm;
+    padding: 1mm 0;
+    border-bottom: 0;
+    text-align: center;
+  }
+  .timeline li + li { border-left: .5pt dashed var(--line); }
+  .timeline time { font-size: 14pt; }
+  .timeline strong { font-size: 10pt; line-height: 1.4; }
+  .timeline div span { font-size: 8.5pt; line-height: 1.3; }
+  .timeline-note { margin: 1.5mm 0 0; font-size: 8.5pt; }
 
   .venue-name { font-size: 12pt; }
   .venue-name span { font-size: 9.5pt; }
