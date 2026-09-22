@@ -110,6 +110,7 @@ a { color: inherit; }
   text-decoration: none;
   transition: background .2s, border-color .2s, color .2s;
 }
+button.btn { font-family: inherit; cursor: pointer; }
 .btn svg { width: 18px; height: 18px; }
 .btn:hover { background: var(--rose-deep); border-color: var(--rose-deep); }
 .btn--ghost { background: transparent; color: var(--rose-deep); }
@@ -473,6 +474,9 @@ address {
   letter-spacing: .04em;
   color: var(--text);
 }
+.keepsake { margin-top: 1.75rem; }
+
+.print-only { display: none; }
 
 /* ---------- Motion ---------- */
 
@@ -487,4 +491,103 @@ address {
   html { scroll-behavior: auto; }
   .scroll-cue { animation: none; }
   .js .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---------- Print：排成一張 A4 ---------- */
+
+@page { size: A4 portrait; margin: 0; }
+
+@media print {
+  :root { --bg: #fff; --bg-alt: #fff; --surface: #fff; }
+
+  body {
+    padding: 16mm 20mm 0;
+    background: #fff;
+    font-size: 10.5pt;
+    line-height: 1.7;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 7mm;
+    border: .5pt solid var(--line);
+    border-radius: 4mm;
+  }
+
+  .nav, .countdown, .countdown-msg, .scroll-cue, .map, .actions,
+  .section .eyebrow { display: none !important; }
+  .print-only { display: block; }
+  .js .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+
+  main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 8mm;
+  }
+  .hero, .invite, .info { grid-column: 1 / -1; }
+
+  /* Hero */
+  .hero { position: static; min-height: 0; padding: 0; overflow: visible; }
+  .floral { position: fixed; width: 52mm; }
+  .floral--tl { top: 0; left: 0; }
+  .floral--br { right: 0; bottom: 0; }
+  .eyebrow { margin-bottom: 1.5mm; font-size: 8pt; }
+  .names { font-size: 30pt; }
+  .names-en { font-size: 16pt; }
+  .divider { width: 40mm; margin: 2.5mm auto; }
+  .hero-date { font-size: 20pt; }
+  .hero-venue { margin-top: 1mm; font-size: 10pt; }
+
+  /* Sections */
+  .section { padding: 0; margin-top: 7mm; }
+  .section h2 { margin-bottom: 3mm; font-size: 13pt; }
+  .section h2::after { width: 8mm; margin-top: 1.5mm; }
+
+  .invite br { display: none; }
+  .invite p { margin: 0 0 1mm; }
+  .verse { margin-top: 3mm; padding: 2.5mm 0; font-size: 9.5pt; line-height: 1.8; }
+  .verse cite { margin-top: .5mm; font-size: 8pt; }
+
+  .big-date { margin-bottom: 1mm; font-size: 12pt; }
+  .big-date span { margin-top: 0; font-size: 9pt; }
+  .timeline { max-width: 62mm; margin: 0 auto; }
+  .timeline li { grid-template-columns: 17mm 1fr; gap: 3mm; padding: 1.8mm 0; }
+  .timeline time { font-size: 15pt; }
+  .timeline strong { font-size: 10.5pt; }
+  .timeline div span { font-size: 9pt; }
+
+  .venue-name { font-size: 12pt; }
+  .venue-name span { font-size: 9.5pt; }
+  .venue-hall { margin: 2.5mm 0 1.5mm; padding: .6mm 4mm; font-size: 9.5pt; }
+  address { margin-bottom: 0; font-size: 9pt; }
+
+  .info-list { grid-template-columns: repeat(3, 1fr); gap: 4mm; }
+  .info-list li {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 1mm;
+    padding: 3mm;
+    border-radius: 3mm;
+    text-align: center;
+  }
+  .info-list svg { width: 8mm; height: 8mm; }
+  .info-list h3 { font-size: 10pt; }
+  .info-list h3 span { display: block; margin: 0; font-size: 9pt; line-height: 1.3; }
+  .info-list p { font-size: 8.5pt; line-height: 1.6; }
+
+  /* Footer：QR code + 署名 */
+  .footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8mm;
+    padding: 7mm 0 0;
+    border: 0;
+    text-align: left;
+  }
+  .print-qr { text-align: center; }
+  .print-qr img { width: 22mm; height: 22mm; margin: 0 auto; }
+  .print-qr p { margin: 1.5mm 0 0; font-size: 7.5pt; letter-spacing: .06em; }
+  .footer p { font-size: 9pt; }
+  .footer .sig { font-size: 18pt; }
 }

@@ -31,6 +31,8 @@
     const timer = setInterval(() => { if (!tick()) clearInterval(timer); }, 1000);
   }
 
+  document.getElementById('print-btn').addEventListener('click', () => window.print());
+
   // Nav border once scrolled
   const nav = document.getElementById('nav');
   const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 8);
